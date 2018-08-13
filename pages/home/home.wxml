@@ -1,0 +1,25 @@
+<!--pages/home/home.wxml-->
+<view class="page">
+    <view class='banner'>
+      <image src='{{banner.src}}' mode='{{banner.mode}}'></image>
+    </view>
+    <view class="category">
+      <view class="category-wrap">
+        <view class="row">
+          <view class="category-box half bg-cyan-blue" bindtap="goKeqian"><image src='/asset/img/prepare.png' mode='aspectFit'></image></view>
+          <view class="category-box half bg-blue" bindtap="goKehou"><image src='/asset/img/cement.png' mode='aspectFit'></image></view>
+        </view>
+        <view class="row">
+          <view class="category-box bg-green full" bindtap="goProduct"><image src='/asset/img/learning.png' mode='aspectFit'></image></view>
+        </view>
+        <view class="row">
+          <view class="category-box half bg-yellow" bindtap="goAbout"><image src='/asset/img/classroom.png' mode='aspectFit'></image></view>
+          <view class="category-box half bg-orange" bindtap="goLearn"><image src='/asset/img/reason.png' mode='aspectFit'></image></view>
+        </view>
+      </view>
+    </view>
+    <view class="tabbar">
+      <view class="tab" bindtap="goCourse"><image src='/asset/img/duty.png' mode='aspectFit'></image></view>
+      <view class="tab" bindtap="goCertification"><image src='/asset/img/honor.png' mode='widthFix'></image></view>
+    </view>
+</view>

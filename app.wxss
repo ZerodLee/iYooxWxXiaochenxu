@@ -1,0 +1,177 @@
+/**app.wxss**/
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+.main-color{
+  color: #00be3c;
+}
+.second-color{
+  color: #ffb030;
+}
+.weui-vcode-btn{
+  color: #00be3c;
+}
+.weui-vcode-btn:active{
+  color: #2f82ec;
+}
+.button-effect{
+  transition: 0.2s;
+}
+.button-effect:active{
+  background-color: rgba(0, 0, 0, 0.15)
+}
+.flex{
+  display: flex;
+}
+.full-w{
+  width: 100%;
+}
+.full-h{
+  height: 100%;
+}
+.p-1{
+  padding: 5px;
+}
+.p-2{
+  padding: 10px;
+}
+.p-3{
+  padding: 15px;
+}
+.pl-0{
+  padding-left: 0;
+}
+.pl-1{
+  padding-left: 5px;
+}
+.pl-4{
+  padding-left: 20px;
+}
+.pr-2{
+  padding-right: 10px;
+}
+.mt-2{
+  margin-top: 10px;
+}
+.mt-4{
+  margin-top: 20px;
+}
+.row{
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+.row .col-1{
+  width: 8.33%;
+}
+.row .col-2{
+  width: 16.67%;
+}
+.row .col-3{
+  width: 25%;
+}
+.row .col-4{
+  width: 33.33%;
+}
+.row .col-5{
+  width: 41.67%;
+}
+.row .col-6{
+  width: 50%;
+}
+.row .col-7{
+  width: 58.33%;
+}
+.row .col-8{
+  width: 66.67%;
+}
+.row .col-9{
+  width: 75%;
+}
+.row .col-10{
+  width: 83.33%;
+}
+.t-10{
+  font-size: 10px;
+}
+.t-12{
+  font-size: 12px;
+}
+.t-14{
+  font-size: 14px;
+}
+.t-16{
+  font-size: 16px;
+}
+.t-18{
+  font-size: 18px;
+}
+.font-blod{
+  font-weight: bold;
+}
+.text-center{
+  text-align: center;
+}
+.text-overflow{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.float-l{
+  float: left;
+}
+.float-r{
+  float: right;
+}
+.full-button{
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: #fff;
+  background-color: #00be3c;
+}
+.full-button:active{
+  opacity: 0.8;
+}
+button.orange{
+  background-color: #ffb030;
+}
+button.orange.orange-hover{
+  background-color: #df9928;
+}
+button.blue{
+  background-color: #4e9cff;
+}
+button.blue.blue-hover{
+  background-color: #2e89fc
+}
+.float-window{
+  position: absolute;
+  background-color: #fff;
+  border-top-left-radius:5px;
+  border-bottom-left-radius:5px;
+  padding: 8px;
+  box-sizing: border-box;
+  width: 50px;
+  right: 0;
+  bottom: 8%;
+  box-shadow: 0 0 8px 0px #00be3c;
+}
+.float-window .line{
+  width: 100%;
+  height: 2px;
+  border-radius: 5px;
+  background-color: #616a7d;
+  margin: 5px 0 10px;
+}
+.float-window image{
+  width: 100%;
+}

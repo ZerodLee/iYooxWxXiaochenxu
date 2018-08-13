@@ -1,0 +1,110 @@
+/* pages/home/home.wxss */
+.page,page{
+    height: 100%;
+    overflow: hidden;
+    /* background-color: #dcdcdc */
+}
+/* .page{
+    display: flex;
+    flex-direction: column;
+} */
+.banner{
+    width :100%;
+    height: 40vw;
+    box-sizing: border-box;
+}
+.banner image{
+    width: 100vw;
+    height: 40vw;
+    background-color: #fff;
+} 
+.tabbar{
+    height: 15vw;
+    display: flex;
+    position: relative;
+}
+.tabbar:after{
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: #fff;
+    top: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+.tabbar .tab{
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00be3c;
+    color: #fff;
+}
+.tab image{
+    width: 28vw; 
+}
+.category{
+    height: calc(100% - 55vw);
+    box-sizing: border-box;
+    /* padding: 2vw 0; */
+}
+.category .category-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 2vw 3vw;
+}
+.category-wrap .row{
+  height: 30%
+}
+.category-box{
+    width: 90vw;
+    margin: 0 2vw;
+    box-sizing: border-box;
+    border-radius: 8px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.category-box image{
+    height: 18vw;
+}
+/* .category-box.full{
+    margin-top: 5%;
+    margin-bottom: 2.5vh;
+} */
+.category-box.full image{
+    height: 27vw;
+}
+.category-box.half{
+    width: 43vw;
+}
+.bg-cyan-blue{
+    background-color: #13b5b1;
+    box-shadow: inset -1px -2px 1px 1px #0ba6a2;
+}
+.bg-green{
+    background-color: #58cd98;
+    box-shadow: inset -1px -2px 1px 1px #3bb980;
+}
+.bg-yellow{
+    background-color: #d0d12e;
+    box-shadow: inset -1px -2px 1px 1px #c2c321;
+}
+.bg-orange{
+    background-color: #ffc80b;
+    box-shadow: inset -1px -2px 1px 1px #ffb907;
+}
+.bg-blue{
+    background-color: #4cb4fb;
+    box-shadow: inset -1px -2px 1px 1px #39a1fa;
+}

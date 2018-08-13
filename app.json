@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/home/home",
+    "pages/about/about",
+    "pages/keqian/keqian",
+    "pages/kehou/kehou",
+    "pages/zeren/zeren",
+    "pages/rongyu/rongyu",
+    "pages/xuexi/xuexi"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#00be3c",
+    "backgroundColor": "#00be3c",
+    "navigationBarTitleText": "首页",
+    "navigationBarTextStyle": "white"
+  },
+  "networkTimeout": {
+    "request": 200000,
+    "connectSocket": 200000,
+    "uploadFile": 200000,
+    "downloadFile": 200000
+  },
+  "tabBar": {
+    "color":"#333",
+    "selectedColor":"#00be3c",
+    "borderStyle":"white",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "./asset/img/tab_icon_learning_regular.png",
+      "selectedIconPath": "./asset/img/tab_icon_learning_selected.png"
+    }, {
+      "pagePath": "pages/keqian/keqian",
+      "text": "课前",
+      "iconPath": "./asset/img/tab_icon_prepare_regular.png",
+      "selectedIconPath": "./asset/img/tab_icon_prepare_selected.png"
+    }, {
+      "pagePath": "pages/kehou/kehou",
+      "text": "课后",
+      "iconPath": "./asset/img/tab_icon_refocus_regular.png",
+      "selectedIconPath": "./asset/img/tab_icon_refocus_selected.png"
+    }, {
+      "pagePath": "pages/about/about",
+      "text": "课中",
+      "iconPath": "./asset/img/tab_icon_class_regular.png",
+      "selectedIconPath": "./asset/img/tab_icon_class_selected.png"
+    }, {
+      "pagePath": "pages/xuexi/xuexi",
+      "text": "10大理由",
+      "iconPath": "./asset/img/tab_icon_reason_regular.png",
+      "selectedIconPath": "./asset/img/tab_icon_reason_selected.png"
+    }]
+  }
+}
