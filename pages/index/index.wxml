@@ -12,67 +12,55 @@
     <view class="message">消息</view>
   </view>
   <view class="classes">
-    <view class="class active">语文</view>
-    <view class="class">数学</view>
-    <view class="class">英语</view>
+    <view class="class {{idx==subjectIndex?'active':''}}" data-id="{{item.kemu_id}}" data-index="{{idx}}" bindtap="changeSubject" wx:for="{{subjects}}" wx:key wx:for-index="idx">{{item.name}}</view>
   </view>
-  <view class="categories row">
-    <view class="banben col-4">苏教版</view>
-    <view class="zhangjie col-4">全部章节</view>
-    <view class="zhishidian col-4">全部知识点</view>
+  <view class="categories row" wx:if="{{specialList.length == 0}}">
+    <view class="banben col-4">
+      <picker bindchange="bindTextbookChange" value="{{textbookIndex}}" range-key="name" range="{{textbooks}}">
+        <view class="picker text-overflow">
+          {{selectedTextbook.name}}
+        </view>
+      </picker>
+    </view>
+    <view class="zhangjie col-4">
+      <picker bindchange="bindChapterChange" value="{{chapterIndex}}" range-key="name" range="{{chapters}}">
+        <view class="picker text-overflow">
+          {{selectedChapter.name}}
+        </view>
+      </picker>
+    </view>
+    <view class="zhishidian col-4">
+      <picker bindchange="bindPointChange" value="{{pointIndex}}" range="{{points}}">
+        <view class="picker text-overflow">
+          {{selectedPoint}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class="categories row" wx:if="{{specialList.length>0}}">
+    <view class="col-4 item {{item.active}}" bindtap="specialChange" data-index="{{idx}}" wx:for="{{specialList}}" wx:for-index="idx" wx:for-item="item" wx:key>{{item.grade_name}}</view>
   </view>
 </view>
 <view class="content">
-  <view class="zhangjie">
+  <view class="zhangjie" wx:for="{{chapterData}}" wx:for-item="chapter" wx:key >
     <view class="zhangjie-title">
-      <view class="title-box">综述</view>
+      <view class="title-box">{{chapter.zhangjie_name}}</view>
     </view>
-    <view class="points">
-      <view class="points-title">
-        <view class="icon">
-          <image src='/asset/img/home_pic_jcjj.png' mode='widthFix'></image>
-        </view>
+    <view class="points" wx:for="{{chapter.zhishidian}}" wx:for-item="point" wx:key>
+      <view class="points-title" bindtap="switchShow">
+        <view class="icon"></view>
         <view class="title">
-          <view class="name">综述</view>
-          <view class="desc">第一讲</view>
+          <view class="name">{{point.zhishidian_name?point.zhishidian_name:point.name}}</view>
+          <view class="desc" wx:if="{{point.zhishidian_name}}">共{{point.shipinlist.length}}讲</view>
         </view>
         <view class="open-icon"><view class="open-img rotate"></view></view>
       </view>
       <view class="video-list">
-        <view class="video">
+        <view class="video" bindtap="goToVideo" data-videoId="{{video.shipin_id}}" data-pointId="{{video.zhishidian_id}}" wx:for="{{point.shipinlist}}" wx:for-item="video" wx:key>
           <view class="play-icon"></view>
-          <view class="name text-overflow">123123132</view>
-          <view class="tag main-color">吹汤</view>
+          <view class="name text-overflow">{{video.shipin_name}}</view>
+          <view class="tag main-color" wx:if="{{video.sort == 1}}">试看</view>
         </view>
-      </view>
-    </view>
-    <view class="points">
-      <view class="points-title">
-        <view class="icon">
-          <image src='/asset/img/home_pic_jcjj.png' mode='widthFix'></image>
-        </view>
-        <view class="title">
-          <view class="name">综述</view>
-          <view class="desc">第一讲</view>
-        </view>
-        <view class="open-icon"><view class="open-img"></view></view>
-      </view>
-    </view>
-  </view>
-  <view class="zhangjie">
-    <view class="zhangjie-title">
-      <view class="title-box">综述</view>
-    </view>
-    <view class="points">
-      <view class="points-title">
-        <view class="icon">
-          <image src='/asset/img/home_pic_jcjj.png' mode='widthFix'></image>
-        </view>
-        <view class="title">
-          <view class="name">综述</view>
-          <view class="desc">第一讲</view>
-        </view>
-        <view class="open-icon">open</view>
       </view>
     </view>
   </view>
