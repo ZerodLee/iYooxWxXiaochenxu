@@ -18,13 +18,20 @@ page view{
 }
 .head .header{
   width: 100%;
-  height: 50px;
+  height: 40px;
   padding: 0 20px;
   background-color: #00be3c;
   color: #fff;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+}
+.header .item{
+  padding: 7px 20px;
+  transition: background 0.3s;
+}
+.header .item:active{
+  background: #069c36
 }
 .head .classes{
   width: 100%;
@@ -40,9 +47,13 @@ page view{
   line-height: 40px;
   height: 100%;
   flex-shrink: 0;
+  transition: background 0.3s;
 }
 .classes>.class.active{
   color: #00be3c;
+}
+.classes>.class:active{
+  background: #f1f1f1;
 }
 .head .categories{
   border-top: 1px solid #ccc;
@@ -53,6 +64,10 @@ page view{
   line-height: 32px;
   font-size: 13px;
   text-align: center;
+  transition: background 0.3s;
+}
+.categories .col-4:active{
+  background: #f1f1f1;
 }
 .categories .item.active{
   color: #00be3c;
@@ -60,7 +75,7 @@ page view{
 }
 .content{
   min-height: 90vh;
-  margin-top: 123px;
+  margin-top: 113px;
   position: relative;
   z-index: 1;
 }
@@ -102,8 +117,8 @@ page view{
 }
 .points-title .icon{
   width: 50px;
-  height: 45px;
-  background: url('https://www.sunvke.com/Content/images/home_pic_jcjj.png') center/100% no-repeat;
+  height: 50px;
+  background: url('https://www.sunvke.com/Content/images/home_pic.png') center/100% no-repeat;
 }
 .points-title .title{
   margin-left: 12px;
@@ -130,7 +145,13 @@ page view{
 .video-list{
   overflow: hidden;
   /* height: 0; */
-  transition: height 0.3s;
+  transition: height 0.5s;
+}
+.video-list.show{
+  height: auto;
+}
+.video-list.hide{
+  height: 0;
 }
 .video-list .video{
   background-color: #fff;
@@ -157,10 +178,15 @@ page view{
   font-size: 13px;
   color: #888;
   margin-left: 12px;
-  max-width: 70vw;
+  max-width: 50vw;
 }
-.video .tag{
+.video .tags{
   margin-left: auto;
+  
+}
+.tags .tag{
+  display: inline-block;
+  margin-left: 7px;
   padding: 2px 5px;
   border-radius: 50px;
   font-size: 12px;

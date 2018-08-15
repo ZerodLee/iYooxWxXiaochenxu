@@ -1,15 +1,15 @@
 <!--index.wxml-->
 <view class="head">
   <view class="header">
-    <view class="search">搜索</view>
-    <view class="classesText">
+    <!-- <view class="search item">搜索</view> -->
+    <view class="classesText item">
         <picker bindchange="bindClassChange" value="{{classesIndex}}" range-key="name" range="{{classes}}">
             <view class="picker">
               {{classes[classesIndex]['name']}}
             </view>
           </picker>
     </view>
-    <view class="message">消息</view>
+    <!-- <view class="message item">消息</view> -->
   </view>
   <view class="classes">
     <view class="class {{idx==subjectIndex?'active':''}}" data-id="{{item.kemu_id}}" data-index="{{idx}}" bindtap="changeSubject" wx:for="{{subjects}}" wx:key wx:for-index="idx">{{item.name}}</view>
@@ -42,24 +42,24 @@
   </view>
 </view>
 <view class="content">
-  <view class="zhangjie" wx:for="{{chapterData}}" wx:for-item="chapter" wx:key >
+  <view class="zhangjie" wx:for="{{chapterData}}" wx:for-item="chapter" wx:for-index="thechapterIndex" wx:key >
     <view class="zhangjie-title">
       <view class="title-box">{{chapter.zhangjie_name}}</view>
     </view>
-    <view class="points" wx:for="{{chapter.zhishidian}}" wx:for-item="point" wx:key>
-      <view class="points-title" bindtap="switchShow">
+    <view class="points" wx:for="{{chapter.zhishidian}}" wx:for-index="thepointIndex" wx:for-item="point" wx:key>
+      <view class="points-title" bindtap="switchShow" data-chapterIndex="{{thechapterIndex}}" data-pointIndex="{{thepointIndex}}">
         <view class="icon"></view>
         <view class="title">
           <view class="name">{{point.zhishidian_name?point.zhishidian_name:point.name}}</view>
           <view class="desc" wx:if="{{point.zhishidian_name}}">共{{point.shipinlist.length}}讲</view>
         </view>
-        <view class="open-icon"><view class="open-img rotate"></view></view>
+        <view class="open-icon"><view class="open-img {{point.show?'rotate':''}}"></view></view>
       </view>
-      <view class="video-list">
-        <view class="video" bindtap="goToVideo" data-videoId="{{video.shipin_id}}" data-pointId="{{video.zhishidian_id}}" wx:for="{{point.shipinlist}}" wx:for-item="video" wx:key>
+      <view class="video-list {{point.show?'show':'hide'}}">
+        <view class="video" bindtap="goToVideo" data-chapterIndex="{{thechapterIndex}}" data-pointIndex="{{thepointIndex}}" data-item="{{video}}"  wx:for="{{point.shipinlist}}" wx:for-item="video" wx:key>
           <view class="play-icon"></view>
           <view class="name text-overflow">{{video.shipin_name}}</view>
-          <view class="tag main-color" wx:if="{{video.sort == 1}}">试看</view>
+          <view class="tags main-color"><text class="tag" wx:if="{{video.sort == 1}}">试看</text><text class="tag" catchtap="doWork" wx:if="{{video.timu_count > 0}}">随堂练习</text></view>
         </view>
       </view>
     </view>

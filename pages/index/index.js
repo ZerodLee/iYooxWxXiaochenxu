@@ -30,9 +30,10 @@ Page({
     selectedChapter:{},
     points:[],
     pointIndex:0,
-    selectedPoint:{},
+    selectedPoint:'',
 
-    chapterData:[]
+    chapterData:[],
+    openIndex:''
   },
   //事件处理函数
   bindViewTap: function() {
@@ -281,6 +282,10 @@ Page({
       console.log('数据',res)
       if(res.data.code>0){
         let chapterData = res.data.data
+        // for(let item of chapterData){
+        //   console.log('1',item)
+        // }
+        // return
         that.setData({
           chapterData:chapterData
         })
@@ -324,26 +329,65 @@ Page({
       }
       return item
     })
+    let theChapterData = specialList[specialIndex].zhangjie
+    // console.log(theChapterData)
+    // return
     this.setData({
       specialList:specialList,
       specialIndex:specialIndex,
-      chapterData:specialList[specialIndex].zhangjie
+      chapterData:theChapterData
     })
     console.log(this.data.chapterData)
     this.hideLoading()
   },
-  specialUpdateData(chapterData){
-    for(let chapter of chapterData){
-      for(let point of chapter.zhishidian){
+  // specialUpdateData(chapterData){
+  //   for(let chapter of chapterData){
+  //     for(let point of chapter.zhishidian){
 
-      }
-    }
-  },
+  //     }
+  //   }
+  // },
 
   goToVideo(e){
-    wx.navigateTo({
-      url:'../video/video?videoId=' + e.currentTarget.dataset.videoid + '&pointId=' + e.currentTarget.dataset.pointid
+    let item = e.currentTarget.dataset.item
+    //console.log(item)
+    console.log('option',e.currentTarget.dataset.pointidx,this.data.chapterData)
+    if(item.sort == 1){
+      let josndata = JSON.stringify(this.data.chapterData[e.currentTarget.dataset.chapterindex]['zhishidian'][e.currentTarget.dataset.pointindex])
+      wx.navigateTo({
+        url:'../video/video?videoId=' + item.shipin_id + '&pointId=' + item.zhishidian_id + '&videoInfo=' + josndata
+      })
+    }else{
+      util.toast('想了解更多，请下载尚课啦app~','none')
+      return
+    }
+    
+  },
+  doWork(e){
+    util.openAlert('做试题请下载尚课啦app~',function(){
+      console.log('好的')
     })
+  },
+  switchShow(e){
+    //console.log(e)
+    let chapterIndex = e.currentTarget.dataset.chapterindex
+    let pointIndex = e.currentTarget.dataset.pointindex
+    let showItem = this.data.chapterData[chapterIndex].zhishidian[pointIndex]
+    let showIndex = 'chapterData[' + chapterIndex + '].zhishidian[' + pointIndex + '].show'
+    console.log(showIndex)
+    if(this.data.openIndex){
+      this.setData({
+        openIndex:showIndex,
+        [this.data.openIndex]:showItem.show?true:false,
+        [showIndex]:showItem.show?false:true,
+      })
+    }else{
+      this.setData({
+        openIndex:showIndex,
+        //[this.data.openIndex]:showItem.show?false:true,
+        [showIndex]:showItem.show?false:true,
+      })
+    }
   },
 
   getPointsUrl(id){

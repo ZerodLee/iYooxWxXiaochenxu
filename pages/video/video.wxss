@@ -2,3 +2,47 @@
 video{
     width: 100vw;
 }
+.video-list{
+    overflow: hidden;
+    /* height: 0; */
+    transition: height 0.3s;
+  }
+  .video-list .video{
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 15px;
+    transition: background 0.3s;
+  }
+  .video-list .video:active,.points-title:active{
+    background: #f1f1f1;
+  }
+  .video-list .video:last-child{
+    border: 0;
+  }
+  .video .play-icon{
+    width: 25px;
+    height: 25px;
+    background: url('https://www.sunvke.com/Content/images/home_video_btn_1.png') center/80% no-repeat;
+  }
+  .video .name{
+    font-size: 13px;
+    color: #888;
+    margin-left: 12px;
+    max-width: 50vw;
+  }
+  .video .tags{
+    margin-left: auto;
+    
+  }
+  .tags .tag{
+    display: inline-block;
+    margin-left: 7px;
+    padding: 2px 5px;
+    border-radius: 50px;
+    font-size: 12px;
+    border: 1px solid #00be3c;
+  }
