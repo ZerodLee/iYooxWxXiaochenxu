@@ -34,9 +34,10 @@ Page({
 
       if(!res.data.data.shipin_url){
         util.toast('视频获取失败！','none')
-        return
+        //return
       }
-      let vid = res.data.data.shipin_url //"e8888b74d1bd0f19e821d6185279564a_e";
+      //let vid = "e8888b74d1bd0f19e821d6185279564a_e" //;
+      let vid = res.data.data.shipin_url?res.data.data.shipin_url:"e8888b74d1bd0f19e821d6185279564a_e"
       // let vidObj = {
       //     vid: vid,
       //     callback: function(videoInfo){
@@ -48,13 +49,11 @@ Page({
       // };
       // polyv.getVideo(vidObj);
 
-      polyv.getVideo(vid, function(videoInfo){
-      
+      polyv.getPreviewVideo(vid, function(videoInfo){
+        console.log('videoInfo',videoInfo)
         that.setData({
-          video:{
-            src:videoInfo.src[0]
-          }
-  
+          src:videoInfo.src[0]
+          //src:videoInfo.teaser_url
         });
       });
       that.setData({
@@ -65,6 +64,10 @@ Page({
     // this.setData({
     //   src:options.id
     // })
+  },
+  timeUpdate: function (e) {
+    console.log(e)
+    //polyv.timeUpdate(e);
   },
 
   /**

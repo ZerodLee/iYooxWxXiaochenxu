@@ -1,6 +1,6 @@
 <!--pages/video/video.wxml-->
 <view class="section tc">
-  <video src="{{src}}"   controls ></video>
+  <video src="{{src}}" bindtimeupdate="timeUpdate" controls ></video>
   <!-- <view class="btn-area">
     <button bindtap="bindButtonTap">获取视频</button>
   </view> -->
