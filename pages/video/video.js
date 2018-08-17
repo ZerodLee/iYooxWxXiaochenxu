@@ -14,6 +14,7 @@ Page({
   data: {
     src:'',
     name:'',
+    vid:'',
     videoInfo:{}
   },
 
@@ -27,7 +28,8 @@ Page({
     let videoInfo = JSON.parse(options.videoInfo)
     console.log('videoInfo',videoInfo)
     that.setData({
-      videoInfo:videoInfo
+      videoInfo:videoInfo,
+      vid:options.videoId
     })
     http.postRequest(url.getVideoUrl,{shipin_id:options.videoId,zhishidian_id:options.pointId}).then(res =>{
       console.log(res)
@@ -65,9 +67,18 @@ Page({
     //   src:options.id
     // })
   },
-  timeUpdate: function (e) {
-    console.log(e)
-    //polyv.timeUpdate(e);
+  watchVideo(e){
+    let item = e.currentTarget.dataset.item
+    console.log(item)
+    //console.log('option',e.currentTarget.dataset.pointidx,this.data.chapterData)
+    if(item.sort == 1){
+      if(this.data.vid != item.shipin_id){
+        //切换视频
+      }
+    }else{
+      util.toast('想了解更多，请下载尚课啦app~','none')
+      return
+    }
   },
 
   /**
