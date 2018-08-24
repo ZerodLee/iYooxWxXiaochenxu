@@ -48,6 +48,41 @@ Page({
     let that = this
     that.showLoading()
 
+    // wx.request({
+    //   url: "https://www.sunvke.com/api/zhishidian/index_load",
+    //   method: "POST",
+    //   data: null,
+    //   header: {
+    //     "content-type": "application/json"
+    //   },
+    //   success: function (res) {
+    //     // console.log(res)
+    //     wx.hideLoading()
+    //     // console.log("wx ajax:", res)
+
+    //   if(res.data.code > 0){
+    //     let classes = res.data.data
+    //     console.log('年级和科目',classes)
+    //     that.setData({
+    //       classes:classes,
+    //       // selectedClass:classes[that.data.classesIndex],
+    //       // subjects:classes[that.data.classesIndex].kemuArr,
+    //       // selectedSubject:classes[that.data.classesIndex].kemuArr[that.data.subjectIndex]
+    //     })
+    //     let target = {
+    //       classesIndex:0
+    //     }
+    //     that.bindClassChange({},target)
+    //   }else{
+    //     util.openAlert('网路请求异常！')
+    //   }
+
+    //   },
+    //   complete: function () {
+    //     //wx.hideLoading()
+    //   }
+    // })
+
     http.postRequest(url.getClasses,{}).then(res =>{
       if(res.data.code > 0){
         let classes = res.data.data
@@ -65,19 +100,6 @@ Page({
       }else{
         util.openAlert('网路请求异常！')
       }
-    //   return http.postRequest(url.getPoints,{grade_id:that.data.selectedClass.grade_id,kemu_id:that.data.selectedSubject.kemu_id})
-    // }).then(res =>{
-    //   console.log('获取科目下的教材，章节，知识点',res)
-
-    //   if(res.data.code > 0){
-    //     let textbooks = res.data.data
-    //     that.setData({
-    //       textbooks:textbooks,
-    //       selectedTextbook:textbooks[that.data.textbookIndex]
-    //     })
-    //   }else{
-    //     util.openAlert('网路请求异常！')
-    //   }
 
     }).catch(res =>{
       console.log('error',res)
@@ -85,6 +107,8 @@ Page({
     }).finally(() =>{
       that.hideLoading()
     })
+
+
     // if (app.globalData.userInfo) {
     //   this.setData({
     //     userInfo: app.globalData.userInfo,
@@ -282,10 +306,16 @@ Page({
       console.log('数据',res)
       if(res.data.code>0){
         let chapterData = res.data.data
-        // for(let item of chapterData){
-        //   console.log('1',item)
-        // }
-        // return
+        for(let item of chapterData[0]['zhishidian']){
+          console.log('1',item)
+          for(let thePoint of item.shipinlist){
+            if(thePoint.sort<4){
+              thePoint.showVideo = true
+            }else{
+              break
+            }
+          }
+        }
         that.setData({
           chapterData:chapterData
         })
@@ -349,23 +379,62 @@ Page({
   // },
 
   goToVideo(e){
+    let that = this
     let item = e.currentTarget.dataset.item
     //console.log(item)
     console.log('option',e.currentTarget.dataset.pointidx,this.data.chapterData)
-    if(item.sort == 1){
-      let josndata = JSON.stringify(this.data.chapterData[e.currentTarget.dataset.chapterindex]['zhishidian'][e.currentTarget.dataset.pointindex])
-      wx.navigateTo({
-        url:'../video/video?videoId=' + item.shipin_id + '&pointId=' + item.zhishidian_id + '&videoInfo=' + josndata
-      })
-    }else{
-      util.toast('想了解更多，请下载尚课啦app~','none')
-      return
-    }
+
+    util.showLoading()
+    http.postRequest(url.getTimu,{shipin_id:item.shipin_id,zhishidian_id:item.zhishidian_id}).then(res =>{
+      console.log(res)
+      util.hideLoading()
+      if(res.data.code == 1 && res.data.data.xiaochengxu_url){
+        let videoInfo = res.data.data.xiaochengxu_url
+        let josndata = JSON.stringify(that.data.chapterData[e.currentTarget.dataset.chapterindex]['zhishidian'][e.currentTarget.dataset.pointindex])
+      
+        wx.navigateTo({
+          url:'../video/video?shipin_id=' + item.shipin_id + '&zhishidian_id=' + item.zhishidian_id + '&videoInfo=' + JSON.stringify(videoInfo) + '&videoList=' +josndata
+        })
+      }else if(res.data.code == -4){
+        util.toast(res.data.msg,'none')
+      }else{
+        util.toast('暂无视频！','none')
+      }
+    }).catch(res =>{
+      util.hideLoading()
+      util.openAlert('网络异常！')
+    })
+
+    // if(item.sort == 1){
+    //   let josndata = JSON.stringify(this.data.chapterData[e.currentTarget.dataset.chapterindex]['zhishidian'][e.currentTarget.dataset.pointindex])
+    //   wx.navigateTo({
+    //     url:'../video/video?videoId=' + item.shipin_id + '&pointId=' + item.zhishidian_id + '&videoInfo=' + josndata
+    //   })
+    // }else{
+    //   util.toast('想了解更多，请下载尚课啦app~','none')
+    //   return
+    // }
     
   },
   doWork(e){
-    util.openAlert('做试题请下载尚课啦app~',function(){
-      console.log('好的')
+    console.log(e)
+    let item = e.currentTarget.dataset.item
+    util.showLoading()
+    http.postRequest(url.getTimu,{shipin_id:item.shipin_id,zhishidian_id:item.zhishidian_id}).then(res =>{
+      console.log(res)
+      util.hideLoading()
+      if(res.data.code == 1){
+        wx.navigateTo({
+          url:'../questions/questions?shipin_id=' + item.shipin_id + '&zhishidian_id=' + item.zhishidian_id
+        })
+      }else{
+        util.openAlert(res.data.msg,function(){
+          console.log('好的')
+        })
+      }
+    }).catch(res =>{
+      util.hideLoading()
+      util.openAlert('网络异常！')
     })
   },
   switchShow(e){

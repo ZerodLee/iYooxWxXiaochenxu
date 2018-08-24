@@ -1,0 +1,107 @@
+/* pages/questions/questions.wxss */
+page,.page{
+    width: 100vw;
+    height: 100vh;
+}
+.page{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.page .submit-btn{
+    position: absolute;
+    width: 100vw;
+    height: 12vw;
+    background-color: #44b549;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    line-height: 12vw;
+    bottom: 0;
+}
+.header{
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px;
+    font-size: 18px;
+    border-top: 4px solid #f1f1f1;
+}
+.proccess{
+    flex-shrink: 0;
+    width: 100vw;
+    height: 4px;
+    position: relative;
+    background-color: #f1f1f1;
+}
+.proccess .proccess-item{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #00be3c;
+    transition: width 0.3s;
+}
+.question-wrap{
+    flex-grow:1;
+}
+.question-wrap .tag{
+    position: relative;
+    height: 50px;
+}
+.tag .tag-name{
+    position: absolute;
+    margin: 7px 0;
+    padding: 8px 20px 8px 25px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-size: 14px;
+    background-color: #00be3c;
+    color: #fff;
+    top: 0;
+    left: 0;
+}
+.question-wrap swiper{
+    width: 100%;
+    height: calc(100vh - 48px)
+}
+.question-wrap .question{
+    padding: 0 5vw 6vw;
+    font-size: 16px;
+}
+.options{
+    
+}
+.options .option-item{
+    display: flex;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.options .option-item.right{
+    border-color: #44b549;
+}
+.option-item.right .option-tag{
+    background-color: #44b549;
+    color: #fff;
+}
+.options .option-item.wrong{
+    border-color: #d64e4e;
+}
+.option-item.wrong .option-tag{
+    background-color: #d64e4e;
+    color: #fff;
+}
+.option-item .option-tag{
+    width: 42px;
+    flex-shrink: 0;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.option-item .option-content{
+    padding: 8px 16px;
+    font-size: 14px;
+    flex-grow: 1;
+}

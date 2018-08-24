@@ -1,0 +1,32 @@
+<!--pages/questions/questions.wxml-->
+<view class="page">
+    <view class="header">
+        <view class="title text-overflow">{{pointName}}</view>
+        <view class="index">{{currentIndex+1}}/{{questions.length}}</view>
+    </view>
+    <view class="proccess">
+        <view class="proccess-item" style="width: {{percentage}}%"></view>
+    </view>
+    <view class="question-wrap">
+    <swiper bindchange="swiperChange" autoplay="{{autoplay}}" current="{{currentIndex}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{questions}}" wx:key wx:for-index="idx" wx:for-item="timu">
+            <swiper-item>
+                <view style="height:100%;overflow-y:auto">
+                    <view class="tag"><view class="tag-name">选择题</view></view>
+                    <view class="question">
+                        <rich-text nodes="{{timu.tigan}}"></rich-text>
+                        <view class="options">
+                            <view class="option-item {{option.result}}" bindtap="selectOption" data-key="{{option.key}}" data-index="{{idx}}"  wx:for="{{timu.options}}" wx:for-index="idx" wx:key wx:for-item="option">
+                                <view class="option-tag">{{option.key}}</view>
+                                <!-- <view class="option-content">{{option.option}}</view> -->
+                                <rich-text class="option-content" nodes="{{option.option}}"></rich-text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
+    </view>
+    <view wx:if="{{(currentIndex+1) == questions.length}}" class="submit-btn" bindtap="submit">提交答案</view>
+</view>

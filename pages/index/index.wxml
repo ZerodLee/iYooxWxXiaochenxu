@@ -59,7 +59,7 @@
         <view class="video" bindtap="goToVideo" data-chapterIndex="{{thechapterIndex}}" data-pointIndex="{{thepointIndex}}" data-item="{{video}}"  wx:for="{{point.shipinlist}}" wx:for-item="video" wx:key>
           <view class="play-icon"></view>
           <view class="name text-overflow">{{video.shipin_name}}</view>
-          <view class="tags main-color"><text class="tag" wx:if="{{video.sort == 1}}">试看</text><text class="tag" catchtap="doWork" wx:if="{{video.timu_count > 0}}">随堂练习</text></view>
+          <view class="tags main-color"><text class="tag" wx:if="{{video.showVideo}}">试看</text><text class="tag" data-item="{{video}}" catchtap="doWork" wx:if="{{video.timu_count > 0}}">随堂练习</text></view>
         </view>
       </view>
     </view>

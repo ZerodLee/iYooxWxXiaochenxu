@@ -6,5 +6,6 @@ const url = {
     getYishu:'https://www.sunvke.com/api/zhishidian/get_yishu',
     getvideo:'https://www.sunvke.com/api/Zhishidian/zhishidian_list',
     getVideoUrl:'https://www.sunvke.com/api/Zhishidian/get_video',
+    getTimu:'https://www.sunvke.com/api/Zhishidian/get_timu_by_video',
 }
 export {url}

@@ -8,7 +8,9 @@
     "pages/zeren/zeren",
     "pages/rongyu/rongyu",
     "pages/xuexi/xuexi",
-    "pages/video/video"
+    "pages/video/video",
+    "pages/questions/questions",
+    "pages/report/report"
   ],
   "window": {
     "backgroundTextStyle": "dark",

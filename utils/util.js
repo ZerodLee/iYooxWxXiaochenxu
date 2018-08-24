@@ -1,3 +1,4 @@
+let isLoading = false
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -55,7 +56,21 @@ function openConfirm(title,content, success,cancel) {
     }
   });
 }
+function showLoading(msg = '加载中..') {
+      if (!isLoading) {
+            wx.showLoading({
+                  title: msg
+            })
+            isLoading = true
+      }
+}
 
+function hideLoading() {
+      if (isLoading) {
+            wx.hideLoading()
+            isLoading = false
+      }
+}
 function myget(path, success) {
       var prefix=getApp().globalData.server.prefix
       // console.log(prefix)
@@ -174,11 +189,5 @@ function get_advice_products(dataObj,success){
 }
 
 module.exports = {
-  formatTime: formatTime,
-  toast: toast,
-  get: myget,
-  openAlert: openAlert,
-  openConfirm: openConfirm,
-  post_form: post_form,
-  post: post_json
+  formatTime,toast,openAlert,openConfirm,showLoading,hideLoading
 }
