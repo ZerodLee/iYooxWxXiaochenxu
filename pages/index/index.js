@@ -94,7 +94,7 @@ Page({
           // selectedSubject:classes[that.data.classesIndex].kemuArr[that.data.subjectIndex]
         })
         let target = {
-          classesIndex:0
+          classesIndex:8
         }
         that.bindClassChange({},target)
       }else{
@@ -306,16 +306,16 @@ Page({
       console.log('数据',res)
       if(res.data.code>0){
         let chapterData = res.data.data
-        for(let item of chapterData[0]['zhishidian']){
-          console.log('1',item)
-          for(let thePoint of item.shipinlist){
-            if(thePoint.sort<4){
-              thePoint.showVideo = true
-            }else{
-              break
-            }
-          }
-        }
+        // for(let item of chapterData[0]['zhishidian']){
+        //   console.log('1',item)
+        //   for(let thePoint of item.shipinlist){
+        //     if(thePoint.sort<4){
+        //       thePoint.showVideo = true
+        //     }else{
+        //       break
+        //     }
+        //   }
+        // }
         that.setData({
           chapterData:chapterData
         })
