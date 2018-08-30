@@ -1,0 +1,18 @@
+/* pages/download/download.wxss */
+cover-view{
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    z-index: 999;
+}
+web-view{
+    opacity: 0;
+    overflow: hidden;
+    height: 0 !important;
+    position: absolute;
+    z-index: -1;
+}
+.page{
+    width: 100vw;
+    height: 100vh;
+}

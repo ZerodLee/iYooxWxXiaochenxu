@@ -10,7 +10,8 @@
     "pages/xuexi/xuexi",
     "pages/video/video",
     "pages/questions/questions",
-    "pages/report/report"
+    "pages/report/report",
+    "pages/download/download"
   ],
   "window": {
     "backgroundTextStyle": "dark",
